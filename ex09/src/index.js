@@ -1,9 +1,5 @@
-// Lodash
-
 const _ = require("lodash");
 
-// Only change code below this line
-// users nested array with four objects starts here
 var users = [
   {
     id: 1,
@@ -34,28 +30,29 @@ var users = [
     gender: "female",
   },
 ];
-// users nested array with four objects ends here
 
-// getUser function - list of users starts here
 function getUsers() {
   var output = "";
+  for (var i = 0; i < users.length; i++) {
+    output += `${users[i].id} - ${users[i].firstName} ${users[i].lastName} is ${users[i].age}, ${users[i].gender}\n`;
+  }
   return output;
 }
-// getUser function - list of users ends here
 
-// findUser(id) function starts here
 function findUserById(id) {
   try {
-    var user = _.find(users); // add appropriate code here
-  } catch (error) {
+    var user = _.find(users, (obj) => {
+      if (obj.id === id) {
+        return true;
+      }
+    });
     var iFindUser = `${user.id} - ${user.firstName} ${user.lastName} is ${user.age}, ${user.gender}`;
-    return iFindUser; // Change this line
-    console.log(); // Change this line
+    return iFindUser;
+  } catch (error) {
+    return error;
   }
 }
-// findUserByID(id) function ends here
-// Only change code above this line
 getUsers();
-findUserById(); // Change this line
+findUserById(1);
 
 module.exports = findUserById;
